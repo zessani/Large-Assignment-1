@@ -45,12 +45,20 @@ public class Album {
 		return songs.size()
 ;	}
 	
-	//public Song getSong(String title) {
-		//
-	//}
-	
-	//public void addSong (String songTitle) {
+	// gets song by title from the Song class
+	public Song getSong(String title) {
+		for (Song song : songs) {
+	        if (song.getSongTitle().equals(title)) {   
+	            return song;
+	        }
+	    }
+	    return null;
 		
-	//}
+	}
+		
+	// adds a song to the album
+	public void addSong (String songTitle) {
+		songs.add(new Song(songTitle, this.artist, this.title));
+	}
 
 }
