@@ -1,6 +1,7 @@
 package LA1.Model;
 
-import java.util.Arraylist;
+import java.util.ArrayList;
+
 
 public class Playlist {
 	private String name;
