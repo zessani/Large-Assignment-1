@@ -1,9 +1,11 @@
-package LA1.Model;
+package LA1;
 
 
 
-public class LibraryModel {
+public class MusicStore {
 
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("hello");
 	}
 }
