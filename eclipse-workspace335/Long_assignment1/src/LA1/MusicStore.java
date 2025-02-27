@@ -50,11 +50,11 @@ public class MusicStore {
 	}
 	
 	public int getNumberOfSongs(){
-		return this.songList.length();
+		return this.songList.size();
 	}
 	
 	public int getNumberOfAlbums(){
-		return this.albumList.length();
+		return this.albumList.size();
 	}
 	
 	private void initializeMusicStore(){
