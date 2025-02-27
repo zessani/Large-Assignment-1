@@ -1,7 +1,12 @@
 package LA1;
 
+
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class MusicStore {
@@ -22,7 +27,7 @@ public class MusicStore {
 		albumList.add(album);
 	}
 	
-	public Song searchSongByTitle(String title){
+	public ArrayList<Song> searchSongByTitle(String title){
 		title = title.toLowerCase();
 		String songTitle = "";
 		ArrayList<Song> result = new ArrayList<>();
@@ -40,7 +45,7 @@ public class MusicStore {
 
 		}
 	
-	public Song searchSongByArtist(String artist) {
+	public ArrayList<Song> searchSongByArtist(String artist) {
 		artist = artist.toLowerCase();
 		String songArtist = "";
 		ArrayList<Song> result = new ArrayList<>();
@@ -57,10 +62,10 @@ public class MusicStore {
 		return result;
 		}
 	
-	public Album searchAlbumByTitle(String title){
+	public ArrayList<Album> searchAlbumByTitle(String title){
 		title = title.toLowerCase();
 		String albumTitle = "";
-		ArrayList<Song> result = new ArrayList<>();
+		ArrayList<Album> result = new ArrayList<>();
 		for ( Album album : this.albumList) {
 			albumTitle = album.getTitle();
 			if (albumTitle.toLowerCase().equals(title)) {
@@ -74,10 +79,10 @@ public class MusicStore {
 		return result;
 		}
 	
-	public Album searchAlbumByArtist(String artist){
+	public ArrayList<Album> searchAlbumByArtist(String artist){
 		artist = artist.toLowerCase();
 		String albumArtist = "";
-		ArrayList<Song> result = new ArrayList<>();
+		ArrayList<Album> result = new ArrayList<>();
 		for ( Album album : this.albumList) {
 			albumArtist = album.getArtist();
 			if (albumArtist.toLowerCase().equals(artist)) {
@@ -100,33 +105,69 @@ public class MusicStore {
 	}
 	
 	private void initializeMusicStore(){
-		String folder = "https://github.com/zessani/Large-Assignment-1/tree/zayyan/eclipse-workspace335/Long_assignment1/src/LA1/Resources";
-		File folder = new File(folder);
-		File files[] = folder.listFiles();
-		BufferedReader br = new BufferedReader();
+		String folderPath = "Resources";
+		File folder = new File(folderPath);
+		File files[] = folder.listFiles();	
 		String[] albumInfoSplit = new String[4];
-		String albumInfo, album, artist, genre, year;
-		for (int i = 0; i < files.length; i++){
-			albumInfo = br.readLine();
-			albumInfoSplit = albumInfo.split(',');
-			album = albumInfoSplit[0];
-			artist = albumInfoSplit[1];
-			genre = albumInfoSplit[2];
-			year = albumInfoSplit[3];
-			Album newAlbum = new Album(album,artist,genre,year);
-			while (true){
-				albumInfo = br.readLine();
-				if (albumInfo == null){
-					this.addAlbum(newAlbum);
-					break;
+		String albumInfo, album, artist, genre, year, songsInfo;
+		int yearInt;
+		for (File file: files){
+			if (!file.getName().equals("albums.txt")){
+				try {
+					BufferedReader br = new BufferedReader(new FileReader(file));
+					albumInfo = br.readLine();
+					albumInfoSplit = albumInfo.split(",");
+					album = albumInfoSplit[0];
+					artist = albumInfoSplit[1];
+					genre = albumInfoSplit[2];
+					year = albumInfoSplit[3];
+					yearInt = Integer.parseInt(year);
+					Album newAlbum = new Album(album,artist,genre,yearInt);
+					while (true){
+						songsInfo = br.readLine();
+						if (songsInfo == null){
+							this.albumList.add(newAlbum);
+							br.close();
+							break;
+						}
+						else{
+							Song newSong = new Song(songsInfo,artist,album);
+							newAlbum.addSong(songsInfo);
+							this.addSong(newSong);
+						}
+					}
+				}catch (IOException e) {
+			System.out.println("The file does not have the proper format, skipping '\n'");	
+			continue;
 				}
-				else{
-					Song newSong = new Song(album,artist,album);
-					newAlbum.addSong(newSong);
-					this.addSong(newSong);
-				}
-				this.addAlbum(newAlbum);
 			}
 		}
+		reorganizeAlbums();
+	}
+	
+	
+	private void reorganizeAlbums(){
+		ArrayList<Album> sortedAlbum = new ArrayList<Album>();
+		String folderPath = "Resources";
+		File albumFile = new File(folderPath, "albums.txt");
+		int i = 0;
+		String title,artist;
+		String[] albumInfoSplit = new String[2];
+		String albumInfo = "";
+		try (BufferedReader albumBR = new BufferedReader(new FileReader(albumFile));) {
+                while ((albumInfo = albumBR.readLine()) != null) {
+                	albumInfoSplit = albumInfo.split(",");
+                	title = albumInfoSplit[0];
+                	artist = albumInfoSplit[1];
+                	for (Album album : this.albumList) {
+                		if (album.getArtist().equalsIgnoreCase(artist) && album.getTitle().equalsIgnoreCase(title)){
+                			sortedAlbum.add(album);
+                		}
+                	}
+                }
+		} catch (IOException e) {
+			System.out.println("albums.txt not found\n");
+		}	
+		this.albumList = sortedAlbum;
 	}
 }
