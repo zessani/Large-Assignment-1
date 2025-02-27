@@ -17,13 +17,13 @@ public class LibraryModel {
 		albums = new ArrayList<>();
 		playlists = new ArrayList<>();
 		
-	}
+	}  
 	// search song by title
 	public ArrayList<Song> searchSongByTitle(String title) {
 		ArrayList<Song> result = new ArrayList<>();
 		for ( Song song : songs) {
 			if (song.getSongTitle().equals(title)) {
-				result.add(song);
+				result.add(song); 
 			}
 		}
 		return result;

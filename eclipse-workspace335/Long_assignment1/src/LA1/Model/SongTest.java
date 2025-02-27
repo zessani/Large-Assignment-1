@@ -19,7 +19,7 @@ class SongTest {
 		assertEquals(5, song.getRating());
 		
 		song.setRating(3);
-		song.setFavorite(true);
+		song.setFavorite(true); 
 		assertTrue(song.isFavorite());
 		
 		song.setFavorite(false);
