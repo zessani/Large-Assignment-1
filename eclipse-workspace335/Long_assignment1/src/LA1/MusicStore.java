@@ -22,32 +22,74 @@ public class MusicStore {
 		albumList.add(album);
 	}
 	
-	public song findSong(Song song){
+	public Song searchSongByTitle(String title){
+		title = title.toLowerCase();
 		String songTitle = "";
-		String findSongTitle = song.getSongTitle();
-		for (int i = 0; i < songList.length(); i++){
-			songTitle = songList[i].getSongTitle();
-			if (findSongTitle.equals(songTitle)){
-				return songList[i].clone();				
+		ArrayList<Song> result = new ArrayList<>();
+		for ( Song song : this.songList) {
+			songTitle = song.getSongTitle();
+			if (songTitle.toLowerCase().equals(title)) {
+				result.add(song);
 			}
 		}
-		System.out.println("Song titled " + findSongTitle + " cannot be found.\n");
-		return null;
-	}
+		if (result.size() == 0) {
+			System.out.println("Song titled " + title + " cannot be found.\n");
+			return null;	
+		}
+		return result;
+
+		}
 	
+	public Song searchSongByArtist(String artist) {
+		artist = artist.toLowerCase();
+		String songArtist = "";
+		ArrayList<Song> result = new ArrayList<>();
+		for ( Song song : this.songList) {
+			songArtist = song.getArtistName();
+			if (songArtist.toLowerCase().equals(artist)) {
+				result.add(song);
+			}
+		}
+		if (result.size() == 0) {
+			System.out.println("Song made by " + artist + " cannot be found.\n");
+			return null;	
+		}
+		return result;
+		}
 	
-	public album findAlbum(Album album){
+	public Album searchAlbumByTitle(String title){
+		title = title.toLowerCase();
 		String albumTitle = "";
-		String findAlbumTitle = album.getTitle();
-		for (int i = 0; i < albumList.length(); i++){
-			albumTitle = albumList[i].getTitle();
-			if (findAlbumTitle.equals(albumTitle)){
-				return albumList[i].clone();
+		ArrayList<Song> result = new ArrayList<>();
+		for ( Album album : this.albumList) {
+			albumTitle = album.getTitle();
+			if (albumTitle.toLowerCase().equals(title)) {
+				result.add(album);
 			}
 		}
-		System.out.println("Album titled " + findAlbumTitle + " cannot be found.\n");
-		return null;
-	}
+		if (result.size() == 0) {
+			System.out.println("Album titled " + title + " cannot be found.\n");
+			return null;	
+		}
+		return result;
+		}
+	
+	public Album searchAlbumByArtist(String artist){
+		artist = artist.toLowerCase();
+		String albumArtist = "";
+		ArrayList<Song> result = new ArrayList<>();
+		for ( Album album : this.albumList) {
+			albumArtist = album.getArtist();
+			if (albumArtist.toLowerCase().equals(artist)) {
+				result.add(album);
+			}
+		}
+		if (result.size() == 0) {
+			System.out.println("Album made by " + artist + " cannot be found.\n");
+			return null;	
+		}
+		return result;
+		}
 	
 	public int getNumberOfSongs(){
 		return this.songList.length();
@@ -58,7 +100,7 @@ public class MusicStore {
 	}
 	
 	private void initializeMusicStore(){
-		String folder = "";
+		String folder = "https://github.com/zessani/Large-Assignment-1/tree/zayyan/eclipse-workspace335/Long_assignment1/src/LA1/Resources";
 		File folder = new File(folder);
 		File files[] = folder.listFiles();
 		BufferedReader br = new BufferedReader();
