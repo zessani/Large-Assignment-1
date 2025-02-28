@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import LA1.MusicStore;
 
+//LibraryModel.java
+
 public class LibraryModel {
 
 	ArrayList<Song> songs;
