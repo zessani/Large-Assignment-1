@@ -1,4 +1,4 @@
-
+package LA1.Model;
 
 import java.util.ArrayList;
 
@@ -6,18 +6,18 @@ import LA1.MusicStore;
 
 public class LibraryModel {
 
-	private ArrayList<Song> songs;
-	private ArrayList<Album> albums;
-	private ArrayList<Playlist> playlists;
+	ArrayList<Song> songs;
+	ArrayList<Album> albums;
+	ArrayList<Playlist> playlists;
 	private MusicStore store;
 	
 	public LibraryModel(MusicStore store) {
 		this.store = store;
-		songs = new ArrayList<>();
+		songs = new ArrayList<>(); 
 		albums = new ArrayList<>();
 		playlists = new ArrayList<>();
 		
-	}  
+	}    
 	// search song by title
 	public ArrayList<Song> searchSongByTitle(String title) {
 		ArrayList<Song> result = new ArrayList<>();
@@ -115,7 +115,7 @@ public class LibraryModel {
         return favorites;
     }
     
-    
+     
     // create a playlist and add/remove songs
     // creating a new Playlist
     
@@ -181,6 +181,17 @@ public class LibraryModel {
         }
         return false;
     }
+    
+    // add a song from the store
+    
+    
+    
+    
+    
+    
+    
+    
+    // add an album from the store
     
 	
 	
