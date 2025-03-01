@@ -105,7 +105,7 @@ public class MusicStore {
 	}
 	
 	private void initializeMusicStore(){
-		String folderPath = "C:\\Users\\Budim\\210Workspace\\Githubaaa\\src\\eclipse-workspace335\\Long_assignment1\\src\\LA1\\Resources";
+		String folderPath = "Resources";
 		File folder = new File(folderPath);
 		File files[] = folder.listFiles();	
 		String[] albumInfoSplit = new String[4];
@@ -148,7 +148,7 @@ public class MusicStore {
 	
 	private void reorganizeAlbums(){
 		ArrayList<Album> sortedAlbum = new ArrayList<Album>();
-		String folderPath = "C:\\Users\\Budim\\210Workspace\\Githubaaa\\src\\eclipse-workspace335\\Long_assignment1\\src\\LA1\\Resources";
+		String folderPath = "Resources";
 		File albumFile = new File(folderPath, "albums.txt");
 		int i = 0;
 		String title,artist;
