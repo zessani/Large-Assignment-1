@@ -10,10 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import LA1.Model.Album;
-import LA1.Model.Song;
 
-  
 public class MusicStore {
 	private ArrayList<Song> songList;
 	private ArrayList<Album> albumList;
@@ -109,8 +106,11 @@ public class MusicStore {
 		return this.albumList.size();
 	}
 	
+
 	public void initializeMusicStore(){
 		String folderPath = "src/LA1/Resources";
+
+
 		File folder = new File(folderPath);
 		File files[] = folder.listFiles();	
 		String[] albumInfoSplit = new String[4];
