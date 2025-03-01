@@ -8,14 +8,16 @@ import org.junit.jupiter.api.Test;
 
 import LA1.MusicStore;
 
+
+
 class LibraryModelTest {
 
 	@Test
-	void test() {
+	void test() { 
 		MusicStore store = new MusicStore() {
 			@Override
-			public void initializeMusicStore() {}
-		};
+			public void initializeMusicStore() {} 
+		};  
 		LibraryModel library = new LibraryModel(store);
 		
 		
@@ -111,7 +113,7 @@ class LibraryModelTest {
         
         boolean mark2 = library.markFavorite("Flight", "Drake", true);
         assertFalse(mark2);
-        
+          
         
         // test ratings
         
@@ -127,10 +129,10 @@ class LibraryModelTest {
         boolean rated3 = library.rateSong("FLY","Drake", 9);
         assertFalse(rated3);
  
-   
-        
-        
-        
+        // test add song/album
+ 
+      
+         
         
      
 	} 

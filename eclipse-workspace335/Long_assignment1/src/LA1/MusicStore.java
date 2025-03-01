@@ -25,7 +25,7 @@ public class MusicStore {
 	}
 
 	public void addSong(Song song){
-		songList.add(song);
+		songList.add(song); 
 	}
 	
 	public void addAlbum(Album album){
@@ -110,7 +110,7 @@ public class MusicStore {
 	}
 	
 	public void initializeMusicStore(){
-		String folderPath = "Resources";
+		String folderPath = "src/LA1/Resources";
 		File folder = new File(folderPath);
 		File files[] = folder.listFiles();	
 		String[] albumInfoSplit = new String[4];
@@ -153,7 +153,7 @@ public class MusicStore {
 	
 	private void reorganizeAlbums(){
 		ArrayList<Album> sortedAlbum = new ArrayList<Album>();
-		String folderPath = "Resources";
+		String folderPath = "src/LA1/Resources";
 		File albumFile = new File(folderPath, "albums.txt");
 		int i = 0;
 		String title,artist;
@@ -173,6 +173,6 @@ public class MusicStore {
 		} catch (IOException e) {
 			System.out.println("albums.txt not found\n");
 		}	
-		this.albumList = sortedAlbum;
+		this.albumList = sortedAlbum; 
 	}
 }
