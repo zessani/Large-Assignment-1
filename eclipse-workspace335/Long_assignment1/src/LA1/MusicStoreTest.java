@@ -5,6 +5,11 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import LA1.Model.Album;
+import LA1.Model.Song;
+
+
+
 public class MusicStoreTest {
 	@Test
 	public void testMusicStoreGetters(){
@@ -65,7 +70,7 @@ public class MusicStoreTest {
 		assertTrue(albumList.size() == 3);
 	}
 	
-	
+	 
 	/*
 	@Test
 	public void testAlbumOrder(){

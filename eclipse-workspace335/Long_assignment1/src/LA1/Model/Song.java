@@ -34,7 +34,7 @@ public class Song {
 			}
 		}
 	}
-	
+	 
 	public int getRating(){
 		return this.userRating;
 	}

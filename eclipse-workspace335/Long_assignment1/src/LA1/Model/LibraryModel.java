@@ -4,19 +4,22 @@ import java.util.ArrayList;
 
 import LA1.MusicStore;
 
+
+//LibraryModel.java
+
 public class LibraryModel {
 
 	ArrayList<Song> songs;
 	ArrayList<Album> albums;
 	ArrayList<Playlist> playlists;
-	private MusicStore store;
+	private MusicStore store; 
 	
 	public LibraryModel(MusicStore store) {
 		this.store = store;
 		songs = new ArrayList<>(); 
-		albums = new ArrayList<>();
+		albums = new ArrayList<>();  
 		playlists = new ArrayList<>();
-		
+		  
 	}    
 	// search song by title
 	public ArrayList<Song> searchSongByTitle(String title) {
@@ -155,7 +158,7 @@ public class LibraryModel {
             }
         }
         return false;
-    }
+    }  
     
     
     // mark a song as “favorite”
@@ -184,15 +187,58 @@ public class LibraryModel {
     
     // add a song from the store
     
-    
-    
-    
-    
-    
-    
-    
+    public boolean addSong(String title, String artist) {
+        for (Song song : songs) {
+            if (song.getSongTitle().equals(title) && song.getArtistName().equals(artist)) {
+                return false;
+            }
+        }
+        
+        ArrayList<Song> storeSongs = store.searchSongByTitle(title);
+        for (Song storeSong : storeSongs) {
+            if (storeSong.getArtistName().equals(artist)) {
+                Song newSong = new Song(title, artist, storeSong.getAlbumTitle());
+                songs.add(newSong);
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
     // add an album from the store
     
+    public boolean addAlbum(String title, String artist) {
+        for (Album album : albums) {
+            if (album.getTitle().equals(title) && album.getArtist().equals(artist)) {
+                return false;
+            }
+        }
+        
+        ArrayList<Album> storeAlbums = store.searchAlbumByTitle(title);
+        for (Album storeAlbum : storeAlbums) {
+            if (storeAlbum.getArtist().equals(artist)) {
+                Album newAlbum = new Album(title, artist, storeAlbum.getGenre(), storeAlbum.getYear());
+                
+                for (Song storeSong : storeAlbum.getSongs()) {
+                    newAlbum.addSong(storeSong.getSongTitle());
+                    songs.add(new Song(storeSong.getSongTitle(), artist, title));
+                }
+                
+                albums.add(newAlbum);
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    
+    
+    
+    
+    
+  
 	
 	
 	
