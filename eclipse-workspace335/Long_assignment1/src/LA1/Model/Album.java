@@ -23,7 +23,7 @@ public class Album {
 	
 	public String getTitle() {
 		return title;
-	}
+	} 
 	
 	public String getArtist() {
 		return artist;

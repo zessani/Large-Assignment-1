@@ -28,5 +28,9 @@ public class Playlist {
 		return this.name;
 	}
 	
+	public ArrayList<Song> getSongs() {
+	    return new ArrayList<>(songs);
 	}
+	
+}
 
