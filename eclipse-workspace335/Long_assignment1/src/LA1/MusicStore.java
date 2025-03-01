@@ -8,10 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import LA1.Model.Album;
-import LA1.Model.Song;
 
-  
 public class MusicStore {
 	private ArrayList<Song> songList;
 	private ArrayList<Album> albumList;
@@ -107,8 +104,8 @@ public class MusicStore {
 		return this.albumList.size();
 	}
 	
-	public void initializeMusicStore(){
-		String folderPath = "Resources";
+	private void initializeMusicStore(){
+		String folderPath = "C:\\Users\\Budim\\210Workspace\\Githubaaa\\src\\eclipse-workspace335\\Long_assignment1\\src\\LA1\\Resources";
 		File folder = new File(folderPath);
 		File files[] = folder.listFiles();	
 		String[] albumInfoSplit = new String[4];
@@ -151,7 +148,7 @@ public class MusicStore {
 	
 	private void reorganizeAlbums(){
 		ArrayList<Album> sortedAlbum = new ArrayList<Album>();
-		String folderPath = "Resources";
+		String folderPath = "C:\\Users\\Budim\\210Workspace\\Githubaaa\\src\\eclipse-workspace335\\Long_assignment1\\src\\LA1\\Resources";
 		File albumFile = new File(folderPath, "albums.txt");
 		int i = 0;
 		String title,artist;
